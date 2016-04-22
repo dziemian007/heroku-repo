@@ -131,7 +131,7 @@ EOF
 
   def run(cmds)
     require 'open3'
-    Open3.popen3("heroku run bash -a #{app} --exit-code") do |stdin, stdout, stderr, wait_thr|
+    Open3.popen3("heroku run bash -a #{app}") do |stdin, stdout, stderr, wait_thr|
       stdin.write(cmds)
       until [stdout, stderr].all? {|f| f.eof?}
         ready = IO.select([stderr, stdout])
